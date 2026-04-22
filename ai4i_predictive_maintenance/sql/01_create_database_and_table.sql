@@ -38,7 +38,7 @@ CREATE TABLE `ai4i2020` (
   `PWF` int DEFAULT NULL,
   `OSF` int DEFAULT NULL,
   `RNF` int DEFAULT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 /*
  把真实 DDL 保存在项目中，便于后续复现导入结果并追踪表结构变化。
  */
@@ -48,7 +48,7 @@ CREATE TABLE `ai4i2020` (
  应优先采用 SHOW CREATE TABLE 的结果。
  */
 CREATE TABLE IF NOT EXISTS predictive_maintenance2020.ai4i2020 (
-  UDI INT NOT NULL,
+  `编号ID` INT NOT NULL,
   Product_ID VARCHAR(20),
   Type CHAR(1),
   Air_temperature DOUBLE,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS predictive_maintenance2020.ai4i2020 (
   PWF TINYINT,
   OSF TINYINT,
   RNF TINYINT,
-  PRIMARY KEY (UDI),
+  PRIMARY KEY (`编号ID`),
   INDEX idx_type (Type),
   INDEX idx_machine_failure (Machine_failure),
   INDEX idx_tool_wear (Tool_wear)

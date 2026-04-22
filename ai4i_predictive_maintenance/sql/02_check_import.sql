@@ -24,10 +24,10 @@ DESCRIBE ai4i2020;
 -- 3. 检查总行数。预期：10000。
 SELECT COUNT(*) AS total_rows
 FROM ai4i2020;
--- 4. 按 UDI 预览前 10 条设备运行记录。
+-- 4. 按导入后的记录编号字段预览前 10 条设备运行记录。
 SELECT *
 FROM ai4i2020
-ORDER BY '编号ID'
+ORDER BY `编号ID`
 LIMIT 10;
 -- 5. 检查产品类型分布。预期：L=6000，M=2997，H=1003。
 SELECT Type,
