@@ -76,3 +76,13 @@ Day 4 的目标是将已经在 MySQL Workbench 中成功导入的 `predictive_ma
 `sql` 目录已调整为更清晰的顺序：`01_create_database_and_table.sql` 用于保存数据库和表结构定义，并记录 `SHOW CREATE TABLE predictive_maintenance2020.ai4i2020;` 的使用方式；`02_check_import.sql` 用于导入后校验，包括总行数、前 10 行预览、`Type` 分布、`Machine_failure` 分布、故障类型计数、产品类型故障率、刀具磨损分箱故障率和标签一致性检查；`03_basic_analysis.sql` 用于沉淀可重复执行的基础 SQL 分析；`04_views.sql` 用于创建后续可复用的分析视图。
 
 后续 SQL 工作建议主要在 VSCode 中完成：使用 VSCode 直连 MySQL，按顺序运行 `01` 查看/维护表结构，运行 `02` 校验导入结果，运行 `03` 做基础分析，必要时运行 `04` 创建可复用视图。Workbench 暂时保留为数据库管理和异常排查工具，VSCode 作为项目 SQL 脚本的主要编辑、执行和版本管理环境。
+
+## Day 5 SQL 业务分析总结
+
+Day 5 的目标是让 SQL 真正参与业务分析，而不只是承担数据导入和校验功能。本阶段将 `sql/03_basic_analysis.sql` 整理为固定口径的 SQL 分析脚本，用 MySQL 复现并扩展 pandas / EDA 阶段观察到的关键现象。
+
+本次 SQL 分析围绕 `predictive_maintenance2020.ai4i2020` 展开，重点包括整体故障率、各产品类型故障率、各故障类型数量、刀具磨损区间故障率、扭矩区间故障率、转速区间故障率、故障与正常样本均值对比，以及 `Type + wear_group` 和 `torque_group + speed_group` 的高风险组合分析。
+
+SQL 在本项目中的价值是沉淀固定口径：pandas 更适合灵活探索和图表分析，而 SQL 更适合形成可重复执行、可审计、可移植的统计查询。后续在 notebook 中展示 SQL 结果时，可以直接引用 `03_basic_analysis.sql` 中的分析口径，避免每次临时重写统计逻辑。
+
+Day 5 最值得同步到 notebook 或报告中的结果包括：整体故障率仍应与 pandas 侧约 3.39% 保持一致；产品类型故障率应继续关注 `L` 类型相对更高的现象；高刀具磨损区间、较高扭矩区间、较低转速区间以及它们的组合，是后续预测性维护分析中值得重点跟踪的风险信号。
