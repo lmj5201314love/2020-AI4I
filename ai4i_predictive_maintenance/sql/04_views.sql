@@ -27,7 +27,6 @@ SELECT CASE
     SUM(Machine_failure) AS fail_cnt,
     ROUND(AVG(Machine_failure) * 100, 2) AS fail_rate_pct
 FROM ai4i2020
-GROUP BY wear_group;
 CREATE OR REPLACE VIEW v_numeric_mean_by_failure AS
 SELECT Machine_failure,
     ROUND(AVG(Air_temperature), 3) AS avg_air_temperature,
