@@ -42,28 +42,3 @@ CREATE TABLE `ai4i2020` (
 /*
  把真实 DDL 保存在项目中，便于后续复现导入结果并追踪表结构变化。
  */
-/*
- 参考 DDL：根据当前在 MySQL Workbench 中观察到的已导入表整理。
- 如果 SHOW CREATE TABLE 返回的字段类型、长度、字符集或索引定义与这里不同，
- 应优先采用 SHOW CREATE TABLE 的结果。
- */
-CREATE TABLE IF NOT EXISTS predictive_maintenance2020.ai4i2020 (
-  `编号ID` INT NOT NULL,
-  Product_ID VARCHAR(20),
-  Type CHAR(1),
-  Air_temperature DOUBLE,
-  Process_temperature DOUBLE,
-  Rotational_speed INT,
-  Torque DOUBLE,
-  Tool_wear INT,
-  Machine_failure TINYINT,
-  TWF TINYINT,
-  HDF TINYINT,
-  PWF TINYINT,
-  OSF TINYINT,
-  RNF TINYINT,
-  PRIMARY KEY (`编号ID`),
-  INDEX idx_type (Type),
-  INDEX idx_machine_failure (Machine_failure),
-  INDEX idx_tool_wear (Tool_wear)
-);
